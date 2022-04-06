@@ -1,6 +1,6 @@
 import Dssv from "./Dssv"
 import LoadingAnimation from "./LoadingAnimation"
-import ModalSv from "./Modalsv"
+import { ModalSv, ModalEdit } from "./Modal"
 import { useSelector } from "react-redux";
 
 export default function QLSV() {
@@ -9,9 +9,10 @@ export default function QLSV() {
 
     return (
         <div className='container'>
-            { load && <LoadingAnimation/> }
             <ModalSv className='my-5'/>
+            <ModalEdit/>
             <Dssv/>
+            { load && <LoadingAnimation/> }
         </div>
     )
 }

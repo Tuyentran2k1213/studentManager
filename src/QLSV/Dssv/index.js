@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import svService from '../AxiosSv';
 import ReactLoading from 'react-loading';
 
-export default function Dssv() {
+export default function Dssv({className}) {
 
     const [load, setLoad] = useState(true);
 
@@ -28,7 +28,9 @@ export default function Dssv() {
     }, []);
 
     return (
-        <table className="table text-center">
+        <table className={`table text-center ${className}`} style={{
+            marginTop: '5.5rem',
+        }}>
   <thead className='table-dark'>
     <tr>
       <th>Id</th>

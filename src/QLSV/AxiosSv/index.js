@@ -19,7 +19,14 @@ const svService = {
         axios({
             method: 'POST',
             url: BASE_URL,
-            data: data,
+            data,
+        })
+    ),
+    updateSv: (id, data) => (
+        axios({
+            method: 'PUT',
+            url: `${BASE_URL}/${id}`,
+            data,
         })
     )   
 }

@@ -4,6 +4,10 @@ import { action } from '../../redux';
 
 export default function ItemSv({ data }) {
 
+    const { deleList, loadingProcess, editSv } = action;
+    const disPatch = useDispatch();
+    const {id, name, email, phone} = data;
+
     const handlingDele = (idsv) => {
             disPatch(loadingProcess(true));
             svService.deleSv(idsv)
@@ -16,10 +20,9 @@ export default function ItemSv({ data }) {
               })
     }
 
-    const { deleList, loadingProcess } = action;
-    const disPatch = useDispatch();
-
-    const {id, name, email, phone} = data;
+    const handleEdit = idStudent => {
+        disPatch(editSv(idStudent));
+    }
 
         return (
       <>
@@ -28,7 +31,7 @@ export default function ItemSv({ data }) {
       <td>{email}</td>
       <td>{phone}</td>
       <td>
-          <button className="btn btn-success mr-2" data-toggle="modal" data-target="#exampleModal">edit</button>
+          <button className="btn btn-success mr-2" data-toggle="modal" data-target="#editModal" onClick={() => handleEdit(id)}>edit</button>
           <button className="btn btn-danger" onClick={() => handlingDele(id)}>delete</button>
       </td>
       </>
