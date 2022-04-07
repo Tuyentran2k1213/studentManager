@@ -9,6 +9,12 @@ const svService = {
             url: BASE_URL,
         })
     ),
+    detailSv: (id) => (
+        axios({
+            method: 'GET',
+            url: `${BASE_URL}/${id}`,
+        })
+    ),
     deleSv: (id) => (
         axios({
             url: `${BASE_URL}/${id}`,

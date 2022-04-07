@@ -4,12 +4,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import svService from '../../AxiosSv';
 import { updateSv, loadingProcess } from '../../redux/action';
+import { useHistory } from 'react-router-dom';
 
 export default function ModalEdit() {
 
   const dataSv = useSelector(state => state.reducer.editStudent);
   const dispatch = useDispatch()
   const closeBtn = useRef();
+  const { location, go } = useHistory();
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
@@ -20,13 +22,17 @@ export default function ModalEdit() {
 
     svService
       .updateSv(data.id, data)
-      .then(res => {
-        dispatch(loadingProcess(false));
-        dispatch(updateSv(res.data));
-      })
-      .catch(err => {
-        console.log(err)
-      })
+        .then(res => {
+          console.log();
+          if(location.pathname == `/detail/${res.data.id}`){
+            go();
+          }
+          dispatch(loadingProcess(false));
+          dispatch(updateSv(res.data));
+        })
+        .catch(err => {
+          console.log(err)
+        })
   }
 
   useEffect(() => {

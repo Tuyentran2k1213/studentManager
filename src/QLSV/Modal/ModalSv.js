@@ -27,7 +27,8 @@ export default function ModalSv({ className }) {
 
     //call add sv api
     svService
-      .addSv(data)
+      .addSv({...data, 
+      image: `https://i.pravatar.cc/150?u=${data.email}`})
       .then(res => {
         dispatch(addToList(res.data));
         dispatch(loadingProcess(false));
